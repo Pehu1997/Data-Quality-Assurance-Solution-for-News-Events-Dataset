@@ -1,0 +1,106 @@
+Reproducing the Analysis
+
+Follow these steps to replicate the entire News Events Data Quality project, including EDA, data cleaning, MySQL loading, and dashboard creation.
+
+1. Setup Environment
+
+Clone the repository:
+
+git clone <repository_url>
+cd project-root (replace accordingly)
+
+
+Install required Python packages:
+
+pip install -r requirements.txt
+
+
+(Ensure packages like pandas, numpy, sqlalchemy, pymysql, plotly are installed.)
+
+2. Data Cleaning & EDA (news_events_main)--> run the scripts
+
+Open the notebook or script: news_events_main.ipynb / news_events_main.py
+
+Load Raw Data:
+
+Place JSONL files in the data / folder.
+
+Flatten and combine all JSONL files into all_records.
+
+Initial Cleaning:
+
+Format datetime columns.
+
+Analyze missing values and duplicates.
+
+Replace NaN with None for MySQL compatibility.
+
+Drop duplicates based on event_id.
+
+Advanced Cleaning:
+
+Handle numeric outliers (amount_normalized, headcount).
+
+Standardize categorical columns (location, company_name, event_type).
+
+Clean textual columns (article_body, article_title, summary).
+
+Validate datetime columns.
+
+Save Cleaned Dataset:
+
+all_records.to_csv("advanced_cleaned_news_events.csv", index=False)
+
+3. MySQL Connection & Data Loading (news_events_main)
+
+Update MySQL credentials in the script:
+
+username = "root"
+password = "290506"
+host = "localhost"
+database = "news_events_db"
+
+
+Create SQLAlchemy engine and connect:
+
+from sqlalchemy import create_engine
+engine = create_engine(f"mysql+pymysql://{username}:{password}@{host}/{database}")
+
+
+Load cleaned dataset into MySQL:
+
+all_records.to_sql('news_events', con=engine, if_exists='replace', index=False)
+
+
+Verify data upload by querying the table.
+
+4. Data Quality Dashboard (news_events_dq)
+
+Open news_events_dq.ipynb / news_events_dq.py.
+
+Import Cleaned Data:
+
+Use the CSV advanced_cleaned_news_events.csv or fetch from MySQL.
+Also, establish the database connection with PowerBI
+
+Compute Data Quality Metrics:
+
+Completeness, uniqueness, consistency, accuracy/validity.
+
+Add audit flags for missing critical info or outliers.
+
+Build Dashboard using Plotly:
+
+Visualize missing values per column, numeric outliers, duplicates, and text completeness.
+
+Export Dashboard :
+
+fig.write_html("dq_dashboard.html")
+
+5. Output
+
+Cleaned Dataset: advanced_cleaned_news_events.csv
+
+Interactive Dashboard: Plotly dashboard or HTML export
+
+Data Quality Insights: Metrics for completeness, uniqueness, consistency, accuracy, and text quality
