@@ -37,29 +37,6 @@ This project focuses on building a comprehensive Data Quality (DQ) assurance fra
 
 * Automated monitoring plan for ongoing quality checks
 
-Project Structure
-project-root/
-│
-├─ data/                       # Raw and cleaned dataset files
-│   ├─ news_events_raw.jsonl
-│   ├─ cleaned_news_events.csv
-│   └─ advanced_cleaned_news_events.csv
-│
-├─ notebooks/                  # Jupyter notebooks for EDA & cleaning
-│   └─ news_events_main.ipynb
-│     └─ news_events_dq.ipynb
-│
-│
-├─ scripts/                    # Python scripts for cleaning, profiling, and DB loading
-│   ├─ advanced_cleaning.py
-│   └─ mysql_load.py
-│
-├─ dashboard/
-        └─ dq dashboard images 
-                             # Dashboard files (Power BI and Plotly + Dash)
-│
-├─ README.md                   # Project overview (this file)
-└─ requirements.txt            # Python dependencies
 
 ### Setup and Running Instructions
 
