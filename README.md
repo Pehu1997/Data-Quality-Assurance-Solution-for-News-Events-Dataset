@@ -6,7 +6,7 @@ This project focuses on building a comprehensive Data Quality (DQ) assurance fra
 ### Data Cleaning & Preprocessing:
 
 * Convert datetime columns to standard formats
-
+ 
 * Handle missing values (NaN → None) for MySQL compatibility
 
 * Drop duplicate records based on primary keys (event_id)
